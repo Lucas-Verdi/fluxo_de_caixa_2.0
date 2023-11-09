@@ -1,14 +1,4 @@
-from pyautogui import *
-from xlwings import *
-from tkinter import *
-from tkinter import filedialog
 from vars import *
-from sql import *
-from datetime import *
-
-janela = Tk()
-janela.title('FLUXO DE CAIXA')
-janela.geometry("500x550")
 
 def lergetnet():
     global arquivogetnet

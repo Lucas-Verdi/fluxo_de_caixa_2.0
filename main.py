@@ -1,4 +1,4 @@
-from depositos import *
+from truncate import *
 from threading import Thread
 
 class Th(Thread):
@@ -13,11 +13,18 @@ class Th(Thread):
         cobranca_safra()
         cobranca_santander()
         depositos()
+        despesas()
+        query()
+        result()
+        truncate()
 
 
 def start():
     a = Th(1)
     a.start()
+
+janela.title('FLUXO DE CAIXA')
+janela.geometry("500x550")
 
 Label1 = Label(janela, text='Insira as pastas de trabalho:', font="Arial 10 bold", justify=CENTER)
 Label1.grid(column=0, row=0, padx=150, pady=10)
@@ -46,8 +53,12 @@ Botao6 = Button(janela, text='DEPOSITOS', font="Arial 10")
 Botao6.grid(column=0, row=11, padx=10, pady=10)
 Botao6.bind("<Button>", lambda e: ler_depositos())
 
+Botao7 = Button(janela, text='DESPESAS', font="Arial 10")
+Botao7.grid(column=0, row=13, padx=10, pady=10)
+Botao7.bind("<Button>", lambda e: ler_despesas())
+
 controle = Button(janela, text='GERAR CONTROLE', font="Arial 10")
-controle.grid(column=0, row=13, padx=10, pady=10)
+controle.grid(column=0, row=15, padx=10, pady=10)
 controle.bind("<Button>", lambda e: start())
 
 janela.mainloop()

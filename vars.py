@@ -1,5 +1,7 @@
+from lib import *
+
 #INTERFACE
-janela = None
+janela = Tk()
 
 #GETNET
 arquivogetnet = None
@@ -30,3 +32,17 @@ valor_cobranca_santander =[]
 arquivo_depositos = None
 data_depositos = []
 valor_depositos = []
+
+#DESPESAS
+arquivo_despesas = None
+data_despesas = []
+valor_despesas = []
+
+#FILTROS
+getnet_tot = []
+safrapay_tot = []
+cobranca_bb_tot = []
+cobranca_safra_tot = []
+cobranca_santander_tot = []
+depositos_tot = []
+despesas_tot = []

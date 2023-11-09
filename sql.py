@@ -8,8 +8,8 @@ connection = mysql.connector.connect(
     passwd='wolf'
 )
 
+cursor = connection.cursor()
 def execute_query(connection, query):
-    cursor = connection.cursor()
     try:
         cursor.execute(query)
         connection.commit()
