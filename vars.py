@@ -15,3 +15,8 @@ valorsafrapay = []
 arquivo_cobrancabb = None
 data_cobrancabb = []
 valor_cobrancabb = []
+
+#COBRANÇA SAFRA
+arquivo_cobranca_safra = None
+data_cobranca_safra = []
+valor_cobranca_safra = []

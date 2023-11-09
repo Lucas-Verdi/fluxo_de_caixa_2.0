@@ -1,9 +1,10 @@
-from cobranca_bb import *
+from cobranca_safra import *
 
 def main():
     getnet()
     safrapay()
     cobrancabb()
+    cobranca_safra()
 
 Label1 = Label(janela, text='Insira as pastas de trabalho:', font="Arial 10 bold", justify=CENTER)
 Label1.grid(column=0, row=0, padx=150, pady=10)
@@ -20,8 +21,12 @@ Botao3 = Button(janela, text='COBRANÇA BB', font="Arial 10")
 Botao3.grid(column=0, row=5, padx=10, pady=10)
 Botao3.bind("<Button>", lambda e: ler_cobrancabb())
 
+Botao4 = Button(janela, text='COBRANÇA SAFRA', font="Arial 10")
+Botao4.grid(column=0, row=7, padx=10, pady=10)
+Botao4.bind("<Button>", lambda e: ler_cobranca_safra())
+
 controle = Button(janela, text='GERAR CONTROLE', font="Arial 10")
-controle.grid(column=0, row=7, padx=10, pady=10)
+controle.grid(column=0, row=9, padx=10, pady=10)
 controle.bind("<Button>", lambda e: main())
 
 janela.mainloop()
