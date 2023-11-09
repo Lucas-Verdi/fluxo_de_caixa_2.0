@@ -25,3 +25,8 @@ valor_cobranca_safra = []
 arquivo_cobranca_santander = None
 data_cobranca_santander = []
 valor_cobranca_santander =[]
+
+#DEPOSITOS
+arquivo_depositos = None
+data_depositos = []
+valor_depositos = []

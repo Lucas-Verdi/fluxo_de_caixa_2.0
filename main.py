@@ -1,4 +1,4 @@
-from cobranca_santander import *
+from depositos import *
 from threading import Thread
 
 class Th(Thread):
@@ -12,6 +12,7 @@ class Th(Thread):
         cobrancabb()
         cobranca_safra()
         cobranca_santander()
+        depositos()
 
 
 def start():
@@ -41,8 +42,12 @@ Botao5 = Button(janela, text='COBRANÇA SANTANDER', font="Arial 10")
 Botao5.grid(column=0, row=9, padx=10, pady=10)
 Botao5.bind("<Button>", lambda e: ler_cobranca_santander())
 
+Botao6 = Button(janela, text='DEPOSITOS', font="Arial 10")
+Botao6.grid(column=0, row=11, padx=10, pady=10)
+Botao6.bind("<Button>", lambda e: ler_depositos())
+
 controle = Button(janela, text='GERAR CONTROLE', font="Arial 10")
-controle.grid(column=0, row=11, padx=10, pady=10)
+controle.grid(column=0, row=13, padx=10, pady=10)
 controle.bind("<Button>", lambda e: start())
 
 janela.mainloop()
