@@ -1,10 +1,22 @@
-from cobranca_safra import *
+from cobranca_santander import *
+from threading import Thread
 
-def main():
-    getnet()
-    safrapay()
-    cobrancabb()
-    cobranca_safra()
+class Th(Thread):
+    def __init__(self, num):
+        Thread.__init__(self)
+        self.num = num
+
+    def run(self):
+        getnet()
+        safrapay()
+        cobrancabb()
+        cobranca_safra()
+        cobranca_santander()
+
+
+def start():
+    a = Th(1)
+    a.start()
 
 Label1 = Label(janela, text='Insira as pastas de trabalho:', font="Arial 10 bold", justify=CENTER)
 Label1.grid(column=0, row=0, padx=150, pady=10)
@@ -25,8 +37,12 @@ Botao4 = Button(janela, text='COBRANÇA SAFRA', font="Arial 10")
 Botao4.grid(column=0, row=7, padx=10, pady=10)
 Botao4.bind("<Button>", lambda e: ler_cobranca_safra())
 
+Botao5 = Button(janela, text='COBRANÇA SANTANDER', font="Arial 10")
+Botao5.grid(column=0, row=9, padx=10, pady=10)
+Botao5.bind("<Button>", lambda e: ler_cobranca_santander())
+
 controle = Button(janela, text='GERAR CONTROLE', font="Arial 10")
-controle.grid(column=0, row=9, padx=10, pady=10)
-controle.bind("<Button>", lambda e: main())
+controle.grid(column=0, row=11, padx=10, pady=10)
+controle.bind("<Button>", lambda e: start())
 
 janela.mainloop()
