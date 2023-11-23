@@ -59,6 +59,8 @@ async def result():
         contdata2 += 1
 
     await insertgetnet(planilha=planilha)
+    await insertsafrapay(planilha=planilha)
+    await insertcobrancabb(planilha=planilha)
     await asyncio.sleep(0)
 
 async def insertgetnet(planilha):
@@ -73,7 +75,34 @@ async def insertgetnet(planilha):
         if date in local:
             indice = local.index(date)
             planilha.range(f'B{i}').value = getnet_tot[indice][2]
-    print(getnet_tot)
+    await asyncio.sleep(0)
+
+async def insertsafrapay(planilha):
+    local = []
+    lr = planilha.range('A2').end('down').row
+    for i in range(0, len(safrapay_tot)):
+        data = safrapay_tot[i][1]
+        local.append(data)
+    for i in range(2, lr + 1):
+        data2 = planilha.range(f'A{i}').value
+        date = data2.date()
+        if date in local:
+            indice = local.index(date)
+            planilha.range(f'C{i}').value = safrapay_tot[indice][2]
+    await asyncio.sleep(0)
+
+async def insertcobrancabb(planilha):
+    local = []
+    lr = planilha.range('A2').end('down').row
+    for i in range(0, len(cobranca_bb_tot)):
+        data = cobranca_bb_tot[i][1]
+        local.append(data)
+    for i in range(2, lr + 1):
+        data2 = planilha.range(f'A{i}').value
+        date = data2.date()
+        if date in local:
+            indice = local.index(date)
+            planilha.range(f'D{i}').value = cobranca_bb_tot[indice][2]
     await asyncio.sleep(0)
 
 
