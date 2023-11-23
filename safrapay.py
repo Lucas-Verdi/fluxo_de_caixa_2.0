@@ -8,7 +8,7 @@ def lersafrapay():
     label.grid(column=0, row=4)
 
 
-def safrapay():
+async def safrapay():
     global arquivosafrapay
     pasta = Book(arquivosafrapay)
     planilha = pasta.sheets[0]
@@ -34,3 +34,4 @@ def safrapay():
         execute_query(connection, "INSERT INTO safra (data, valor) VALUES ('{}', '{}');".format(datasafrapay[i], valorsafrapay[i]))
 
     pasta.close()
+    await asyncio.sleep(0)

@@ -6,7 +6,7 @@ def ler_depositos():
     label = Label(janela, text="{} CARREGADO".format(arquivo_depositos), font="Arial 7")
     label.grid(column=0, row=12)
     
-def depositos():
+async def depositos():
     global arquivo_depositos
     pasta = Book(arquivo_depositos)
     planilha = pasta.sheets[0]
@@ -30,3 +30,4 @@ def depositos():
         execute_query(connection, "INSERT INTO depositos (data, valor) VALUES ('{}', '{}');".format(data_depositos[i], valor_depositos[i]))
 
     pasta.close()
+    await asyncio.sleep(0)

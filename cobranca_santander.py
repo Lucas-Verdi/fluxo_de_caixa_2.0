@@ -6,7 +6,7 @@ def ler_cobranca_santander():
     label = Label(janela, text="{} CARREGADO".format(arquivo_cobranca_santander), font="Arial 7")
     label.grid(column=0, row=10)
     
-def cobranca_santander():
+async def cobranca_santander():
     global arquivo_cobranca_santander
     pasta = Book(arquivo_cobranca_santander)
     planilha = pasta.sheets[0]
@@ -34,3 +34,4 @@ def cobranca_santander():
         execute_query(connection, "INSERT INTO santander (data, valor) VALUES ('{}', '{}');".format(data_cobranca_santander[i], valor_cobranca_santander[i]))
 
     pasta.close()
+    await asyncio.sleep(0)

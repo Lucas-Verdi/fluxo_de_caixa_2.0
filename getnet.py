@@ -6,7 +6,7 @@ def lergetnet():
     label = Label(janela, text="{} CARREGADO".format(arquivogetnet), font="Arial 7")
     label.grid(column=0, row=2)
 
-def getnet():
+async def getnet():
     global arquivogetnet
     pasta = Book(arquivogetnet)
     planilha = pasta.sheets[1]
@@ -27,3 +27,4 @@ def getnet():
         execute_query(connection, "INSERT INTO getnet (data, valor) VALUES ('{}', '{}');".format(datagetnet[i], valorgetnet[i]))
 
     pasta.close()
+    await asyncio.sleep(0)

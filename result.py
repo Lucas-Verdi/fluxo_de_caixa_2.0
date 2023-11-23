@@ -1,8 +1,38 @@
 import xlwings
 
-from query import *
+from despesas import *
 
-def result():
+async def result():
+    global getnet_tot
+    global safrapay_tot
+    global cobranca_bb_tot
+    global cobranca_safra_tot
+    global cobranca_santander_tot
+    global depositos_tot
+    global despesas_tot
+
+    cursor.execute("SELECT * FROM getnet ORDER BY data")
+    getnet_tot = cursor.fetchall()
+
+    cursor.execute("SELECT * FROM safra ORDER BY data")
+    safrapay_tot = cursor.fetchall()
+
+    cursor.execute("SELECT * FROM bbrasil ORDER BY data")
+    cobranca_bb_tot = cursor.fetchall()
+
+    cursor.execute("SELECT * FROM cobsafra ORDER BY data")
+    cobranca_safra_tot = cursor.fetchall()
+
+    cursor.execute("SELECT * FROM santander ORDER BY data")
+    cobranca_santander_tot = cursor.fetchall()
+
+    cursor.execute("SELECT * FROM depositos ORDER BY data")
+    depositos_tot = cursor.fetchall()
+
+    cursor.execute("SELECT * FROM despesas ORDER BY data")
+    despesas_tot = cursor.fetchall()
+
+
     data_atual = datetime.now()
     app = xlwings.App()
     pasta = app.books.add()
@@ -28,4 +58,22 @@ def result():
         contdata += 1
         contdata2 += 1
 
+    await insertgetnet(planilha=planilha)
+    await asyncio.sleep(0)
+
+async def insertgetnet(planilha):
+    local = []
     lr = planilha.range('A2').end('down').row
+    for i in range(0, len(getnet_tot)):
+        data = getnet_tot[i][1]
+        local.append(data)
+    for i in range(2, lr + 1):
+        data2 = planilha.range(f'A{i}').value
+        date = data2.date()
+        if date in local:
+            indice = local.index(date)
+            planilha.range(f'B{i}').value = getnet_tot[indice][2]
+    print(getnet_tot)
+    await asyncio.sleep(0)
+
+

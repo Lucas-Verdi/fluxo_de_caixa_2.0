@@ -6,7 +6,7 @@ def ler_despesas():
     label = Label(janela, text="{} CARREGADO".format(arquivo_despesas), font="Arial 7")
     label.grid(column=0, row=14)
     
-def despesas():
+async def despesas():
     global arquivo_despesas
     pasta = Book(arquivo_despesas)
     planilha = pasta.sheets[0]
@@ -31,3 +31,4 @@ def despesas():
         execute_query(connection, "INSERT INTO despesas (data, valor) VALUES ('{}', '{}');".format(data_despesas[i], valor_despesas[i]))
 
     pasta.close()
+    await asyncio.sleep(0)

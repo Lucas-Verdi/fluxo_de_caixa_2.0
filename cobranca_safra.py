@@ -6,7 +6,7 @@ def ler_cobranca_safra():
     label = Label(janela, text="{} CARREGADO".format(arquivo_cobranca_safra), font="Arial 7")
     label.grid(column=0, row=8)
     
-def cobranca_safra():
+async def cobranca_safra():
     global arquivo_cobranca_safra
     pasta = Book(arquivo_cobranca_safra)
     planilha = pasta.sheets[0]
@@ -34,3 +34,4 @@ def cobranca_safra():
         execute_query(connection, "INSERT INTO cobsafra (data, valor) VALUES ('{}', '{}');".format(data_cobranca_safra[i], valor_cobranca_safra[i]))
 
     pasta.close()
+    await asyncio.sleep(0)

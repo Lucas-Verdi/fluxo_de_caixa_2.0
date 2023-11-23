@@ -7,7 +7,7 @@ def ler_cobrancabb():
     label.grid(column=0, row=6)
 
 
-def cobrancabb():
+async def cobrancabb():
     global arquivo_cobrancabb
     pasta = Book(arquivo_cobrancabb)
     planilha = pasta.sheets[0]
@@ -31,3 +31,4 @@ def cobrancabb():
         execute_query(connection, "INSERT INTO bbrasil (data, valor) VALUES ('{}', '{}');".format(data_cobrancabb[i], valor_cobrancabb[i]))
 
     pasta.close()
+    await asyncio.sleep(0)

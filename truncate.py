@@ -1,6 +1,6 @@
 from result import *
 
-def truncate():
+async def truncate():
     cursor.execute("TRUNCATE getnet;")
     cursor.execute("TRUNCATE safra;")
     cursor.execute("TRUNCATE bbrasil;")
@@ -8,3 +8,4 @@ def truncate():
     cursor.execute("TRUNCATE santander;")
     cursor.execute("TRUNCATE depositos;")
     cursor.execute("TRUNCATE despesas;")
+    await asyncio.sleep(0)

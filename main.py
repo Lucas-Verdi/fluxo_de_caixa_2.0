@@ -6,17 +6,20 @@ class Th(Thread):
         Thread.__init__(self)
         self.num = num
 
+    async def run_async(self):
+        await getnet()
+        await safrapay()
+        await cobrancabb()
+        await cobranca_safra()
+        await cobranca_santander()
+        await depositos()
+        await despesas()
+        await result()
+        await truncate()
+
     def run(self):
-        getnet()
-        safrapay()
-        cobrancabb()
-        cobranca_safra()
-        cobranca_santander()
-        depositos()
-        despesas()
-        query()
-        result()
-        truncate()
+        asyncio.run(self.run_async())
+        
 
 
 def start():
