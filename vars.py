@@ -4,37 +4,37 @@ from lib import *
 janela = Tk()
 
 #GETNET
-arquivogetnet = r"C:\Users\Helpdesk\Desktop\fluxodecaixa20\getnet.xlsx"
+arquivogetnet = None
 datagetnet = []
 valorgetnet = []
 
 #SAFRAPAY
-arquivosafrapay = r"C:\Users\Helpdesk\Desktop\fluxodecaixa20\safrapay.xlsx"
+arquivosafrapay = None
 datasafrapay = []
 valorsafrapay = []
 
 #COBRANÇA BB
-arquivo_cobrancabb = r"C:\Users\Helpdesk\Desktop\fluxodecaixa20\bb.xlsx"
+arquivo_cobrancabb = None
 data_cobrancabb = []
 valor_cobrancabb = []
 
 #COBRANÇA SAFRA
-arquivo_cobranca_safra = r"C:\Users\Helpdesk\Desktop\fluxodecaixa20\safra.xlsx"
+arquivo_cobranca_safra = None
 data_cobranca_safra = []
 valor_cobranca_safra = []
 
 #COBRANÇA SANTANDER
-arquivo_cobranca_santander = r"C:\Users\Helpdesk\Desktop\fluxodecaixa20\santander.xlsx"
+arquivo_cobranca_santander = None
 data_cobranca_santander = []
 valor_cobranca_santander =[]
 
 #DEPOSITOS
-arquivo_depositos = r"C:\Users\Helpdesk\Desktop\fluxodecaixa20\depositos.xlsx"
+arquivo_depositos = None
 data_depositos = []
 valor_depositos = []
 
 #DESPESAS
-arquivo_despesas = r"C:\Users\Helpdesk\Desktop\fluxodecaixa20\despesas.xlsx"
+arquivo_despesas = None
 data_despesas = []
 valor_despesas = []
 

@@ -31,4 +31,5 @@ async def despesas():
         execute_query(connection, "INSERT INTO despesas (data, valor) VALUES ('{}', '{}');".format(data_despesas[i], valor_despesas[i]))
 
     pasta.close()
+    os.system('taskkill /im Excel.exe')
     await asyncio.sleep(0)

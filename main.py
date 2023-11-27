@@ -12,6 +12,7 @@ class Th(Thread):
     def __init__(self, num):
         Thread.__init__(self)
         self.num = num
+        Th.daemon = True
 
     async def run_async(self):
         pb['value'] = 0

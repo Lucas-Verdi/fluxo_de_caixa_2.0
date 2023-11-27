@@ -30,4 +30,5 @@ async def depositos():
         execute_query(connection, "INSERT INTO depositos (data, valor) VALUES ('{}', '{}');".format(data_depositos[i], valor_depositos[i]))
 
     pasta.close()
+    os.system('taskkill /im Excel.exe')
     await asyncio.sleep(0)

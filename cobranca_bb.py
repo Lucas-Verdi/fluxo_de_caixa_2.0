@@ -31,4 +31,5 @@ async def cobrancabb():
         execute_query(connection, "INSERT INTO bbrasil (data, valor) VALUES ('{}', '{}');".format(data_cobrancabb[i], valor_cobrancabb[i]))
 
     pasta.close()
+    os.system('taskkill /im Excel.exe')
     await asyncio.sleep(0)

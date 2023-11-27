@@ -34,4 +34,5 @@ async def cobranca_santander():
         execute_query(connection, "INSERT INTO santander (data, valor) VALUES ('{}', '{}');".format(data_cobranca_santander[i], valor_cobranca_santander[i]))
 
     pasta.close()
+    os.system('taskkill /im Excel.exe')
     await asyncio.sleep(0)

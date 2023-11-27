@@ -34,4 +34,5 @@ async def safrapay():
         execute_query(connection, "INSERT INTO safra (data, valor) VALUES ('{}', '{}');".format(datasafrapay[i], valorsafrapay[i]))
 
     pasta.close()
+    os.system('taskkill /im Excel.exe')
     await asyncio.sleep(0)

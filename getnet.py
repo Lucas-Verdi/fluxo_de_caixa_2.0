@@ -27,4 +27,5 @@ async def getnet():
         execute_query(connection, "INSERT INTO getnet (data, valor) VALUES ('{}', '{}');".format(datagetnet[i], valorgetnet[i]))
 
     pasta.close()
+    os.system('taskkill /im Excel.exe')
     await asyncio.sleep(0)
