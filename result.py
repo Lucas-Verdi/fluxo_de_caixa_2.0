@@ -61,6 +61,10 @@ async def result():
     await insertgetnet(planilha=planilha)
     await insertsafrapay(planilha=planilha)
     await insertcobrancabb(planilha=planilha)
+    await insertcobrancasafra(planilha=planilha)
+    await insertcobrancasantander(planilha=planilha)
+    await insertdepositos(planilha=planilha)
+    await insertdespesas(planilha=planilha)
     await asyncio.sleep(0)
 
 async def insertgetnet(planilha):
@@ -103,6 +107,62 @@ async def insertcobrancabb(planilha):
         if date in local:
             indice = local.index(date)
             planilha.range(f'D{i}').value = cobranca_bb_tot[indice][2]
+    await asyncio.sleep(0)
+
+async def insertcobrancasafra(planilha):
+    local = []
+    lr = planilha.range('A2').end('down').row
+    for i in range(0, len(cobranca_safra_tot)):
+        data = cobranca_safra_tot[i][1]
+        local.append(data)
+    for i in range(2, lr + 1):
+        data2 = planilha.range(f'A{i}').value
+        date = data2.date()
+        if date in local:
+            indice = local.index(date)
+            planilha.range(f'E{i}').value = cobranca_safra_tot[indice][2]
+    await asyncio.sleep(0)
+
+async def insertcobrancasantander(planilha):
+    local = []
+    lr = planilha.range('A2').end('down').row
+    for i in range(0, len(cobranca_santander_tot)):
+        data = cobranca_santander_tot[i][1]
+        local.append(data)
+    for i in range(2, lr + 1):
+        data2 = planilha.range(f'A{i}').value
+        date = data2.date()
+        if date in local:
+            indice = local.index(date)
+            planilha.range(f'F{i}').value = cobranca_santander_tot[indice][2]
+    await asyncio.sleep(0)
+
+async def insertdepositos(planilha):
+    local = []
+    lr = planilha.range('A2').end('down').row
+    for i in range(0, len(depositos_tot)):
+        data = depositos_tot[i][1]
+        local.append(data)
+    for i in range(2, lr + 1):
+        data2 = planilha.range(f'A{i}').value
+        date = data2.date()
+        if date in local:
+            indice = local.index(date)
+            planilha.range(f'G{i}').value = depositos_tot[indice][2]
+    await asyncio.sleep(0)
+
+async def insertdespesas(planilha):
+    local = []
+    lr = planilha.range('A2').end('down').row
+    for i in range(0, len(despesas_tot)):
+        data = despesas_tot[i][1]
+        local.append(data)
+    for i in range(2, lr + 1):
+        data2 = planilha.range(f'A{i}').value
+        date = data2.date()
+        if date in local:
+            indice = local.index(date)
+            planilha.range(f'H{i}').value = despesas_tot[indice][2]
     await asyncio.sleep(0)
 
 
