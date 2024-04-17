@@ -1,4 +1,6 @@
 import datetime
+
+import pyautogui
 from getnet import *
 
 
@@ -14,9 +16,27 @@ async def safrapay():
     pasta = Book(arquivosafrapay)
     planilha = pasta.sheets[0]
 
+    pasta.app.api.WindowState = -4137
+
     execute_query(connection, 'USE fluxodecaixa;')
 
     lr = planilha.range('F2').end('down').row
+
+    planilha.range('F2:F{}'.format(lr)).api.Replace('.', '/')
+
+    pyautogui.moveTo(700, 500)
+    pyautogui.click()
+    planilha.range('F1:F{}'.format(lr)).select()
+    pyautogui.sleep(0.5)
+    pyautogui.hotkey('alt', 's')
+    pyautogui.sleep(0.5)
+    pyautogui.press('a')
+    pyautogui.sleep(0.5)
+    pyautogui.press('l')
+    pyautogui.sleep(0.5)
+    pyautogui.press('enter')
+    
+    
 
     soma = 0
     for i in range(2, lr + 1):
@@ -25,8 +45,7 @@ async def safrapay():
         valor = planilha.range(f'L{i}').value
         soma += valor
         if data != data1:
-            databarra = data.replace('.', '/')
-            date = datetime.strptime(databarra, '%d/%m/%Y').date()
+            date = planilha.range(f'F{i}').value
             datasafrapay.append(date)
             valorsafrapay.append(soma)
             soma = 0

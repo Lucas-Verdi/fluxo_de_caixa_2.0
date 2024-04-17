@@ -1,3 +1,4 @@
+from tkinter import messagebox
 from truncate import *
 from threading import Thread
 
@@ -34,7 +35,9 @@ class Th(Thread):
         pb['value'] = 96
         await truncate()
         pb['value'] = 100
-        
+        messagebox.showinfo("Alerta", "Processo finalizado")
+
+
         
 
     def run(self):
