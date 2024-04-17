@@ -5,7 +5,7 @@ from mysql.connector import Error
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
-    passwd='wolf'
+    passwd='64784585',
 )
 
 cursor = connection.cursor()

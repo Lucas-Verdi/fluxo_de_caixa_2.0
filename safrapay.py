@@ -1,3 +1,4 @@
+import datetime
 from getnet import *
 
 
@@ -23,7 +24,7 @@ async def safrapay():
         data1 = planilha.range(f'F{i + 1}').value
         valor = planilha.range(f'L{i}').value
         soma += valor
-        if data != data1 or data1 == None:
+        if data != data1:
             databarra = data.replace('.', '/')
             date = datetime.strptime(databarra, '%d/%m/%Y').date()
             datasafrapay.append(date)

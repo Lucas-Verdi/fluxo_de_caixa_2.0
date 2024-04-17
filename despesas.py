@@ -21,11 +21,12 @@ async def despesas():
         data = planilha.range(f'A{i}').value
         data1 = planilha.range(f'A{i + 1}').value
         valor = planilha.range(f'G{i}').value
-        soma += valor
-        if data != data1 or data1 == None:
-            data_despesas.append(data)
-            valor_despesas.append(soma)
-            soma = 0
+        if isinstance(data, datetime):
+            soma += valor
+            if data != data1 or data1 == None:
+                data_despesas.append(data)
+                valor_despesas.append(soma)
+                soma = 0
 
     for i in range(0, len(data_despesas)):
         execute_query(connection, "INSERT INTO despesas (data, valor) VALUES ('{}', '{}');".format(data_despesas[i], valor_despesas[i]))

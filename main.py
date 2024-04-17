@@ -31,8 +31,11 @@ class Th(Thread):
         await despesas()
         pb['value'] = 84
         await result()
-        pb['value'] = 100
+        pb['value'] = 96
         await truncate()
+        pb['value'] = 100
+        
+        
 
     def run(self):
         asyncio.run(self.run_async())

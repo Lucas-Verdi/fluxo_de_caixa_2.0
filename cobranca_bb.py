@@ -17,15 +17,16 @@ async def cobrancabb():
     lr = planilha.range('A2').end('down').row
 
     soma = 0
-    for i in range(2, lr + 1):
+    for i in range(3, lr + 1):
         data = planilha.range(f'A{i}').value
         data1 = planilha.range(f'A{i + 1}').value
         valor = planilha.range(f'E{i}').value
-        soma += valor
-        if data != data1 or data1 == None:
-            data_cobrancabb.append(data)
-            valor_cobrancabb.append(soma)
-            soma = 0
+        if isinstance(data, datetime):
+            soma += valor
+            if data != data1 or data1 == None:
+                data_cobrancabb.append(data)
+                valor_cobrancabb.append(soma)
+                soma = 0
 
     for i in range(0, len(data_cobrancabb)):
         execute_query(connection, "INSERT INTO bbrasil (data, valor) VALUES ('{}', '{}');".format(data_cobrancabb[i], valor_cobrancabb[i]))
