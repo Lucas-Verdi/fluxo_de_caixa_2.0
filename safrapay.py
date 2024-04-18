@@ -24,7 +24,7 @@ async def safrapay():
 
     planilha.range('F2:F{}'.format(lr)).api.Replace('.', '/')
 
-    pyautogui.moveTo(700, 500)
+    pyautogui.moveTo(400, 0)
     pyautogui.click()
     planilha.range('F1:F{}'.format(lr)).select()
     pyautogui.sleep(0.5)
@@ -36,8 +36,6 @@ async def safrapay():
     pyautogui.sleep(0.5)
     pyautogui.press('enter')
     
-    
-
     soma = 0
     for i in range(2, lr + 1):
         data = planilha.range(f'F{i}').value
