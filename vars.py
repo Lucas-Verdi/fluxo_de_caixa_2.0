@@ -34,9 +34,18 @@ data_depositos = []
 valor_depositos = []
 
 #DESPESAS
-arquivo_despesas = None
+arquivo_despesas = []
 data_despesas = []
 valor_despesas = []
+
+data_despesas2 = []
+valor_despesas2 = []
+
+data_despesas3 = []
+valor_despesas3 = []
+
+data_despesas4 = []
+valor_despesas4 = []
 
 #FILTROS
 getnet_tot = []

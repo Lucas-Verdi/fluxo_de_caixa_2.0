@@ -29,7 +29,7 @@ async def result():
     cursor.execute("SELECT * FROM depositos ORDER BY data")
     depositos_tot = cursor.fetchall()
 
-    cursor.execute("SELECT * FROM despesas ORDER BY data")
+    cursor.execute("SELECT data, SUM(valor) AS total_valor FROM despesas GROUP BY data")
     despesas_tot = cursor.fetchall()
 
 

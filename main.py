@@ -33,7 +33,7 @@ class Th(Thread):
         pb['value'] = 84
         await result()
         pb['value'] = 96
-        await truncate()
+        #await truncate()
         pb['value'] = 100
         messagebox.showinfo("Alerta", "Processo finalizado")
 
