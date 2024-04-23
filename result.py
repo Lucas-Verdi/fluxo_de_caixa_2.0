@@ -29,7 +29,7 @@ async def result():
     cursor.execute("SELECT * FROM depositos ORDER BY data")
     depositos_tot = cursor.fetchall()
 
-    cursor.execute("SELECT data, SUM(valor) AS total_valor FROM despesas GROUP BY data")
+    cursor.execute("SELECT data, SUM(valor) FROM despesas GROUP BY data")
     despesas_tot = cursor.fetchall()
 
 
@@ -155,14 +155,14 @@ async def insertdespesas(planilha):
     local = []
     lr = planilha.range('A2').end('down').row
     for i in range(0, len(despesas_tot)):
-        data = despesas_tot[i][1]
+        data = despesas_tot[i][0]
         local.append(data)
     for i in range(2, lr + 1):
         data2 = planilha.range(f'A{i}').value
         date = data2.date()
         if date in local:
             indice = local.index(date)
-            planilha.range(f'H{i}').value = despesas_tot[indice][2]
+            planilha.range(f'H{i}').value = despesas_tot[indice][1]
     await asyncio.sleep(0)
 
 
