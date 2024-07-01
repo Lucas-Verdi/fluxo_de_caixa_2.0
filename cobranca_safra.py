@@ -8,31 +8,34 @@ def ler_cobranca_safra():
     
 async def cobranca_safra():
     global arquivo_cobranca_safra
-    pasta = Book(arquivo_cobranca_safra)
-    planilha = pasta.sheets[0]
+    if arquivo_cobranca_safra == None:
+        print('Vazio')
+    else:
+        pasta = Book(arquivo_cobranca_safra)
+        planilha = pasta.sheets[0]
 
-    execute_query(connection, 'USE fluxodecaixa;')
+        execute_query(connection, 'USE fluxodecaixa;')
 
-    soma = 0
-    planilha['1:5'].delete()
-    lr = planilha.range('A2').end('down').row
-    
-    for i in range(2, lr + 1):
-        data = planilha.range(f'A{i}').value
-        data1 = planilha.range(f'A{i + 1}').value
-        valor = planilha.range(f'I{i}').value
-        convertido = valor.replace('.', '')
-        convertido2 = convertido.replace(',', '.')
-        soma += float(convertido2)
-        if data != data1 or data1 == None:
-            date = datetime.strptime(data, '%d/%m/%Y').date()
-            data_cobranca_safra.append(date)
-            valor_cobranca_safra.append(soma)
-            soma = 0
+        soma = 0
+        planilha['1:5'].delete()
+        lr = planilha.range('A2').end('down').row
+        
+        for i in range(2, lr + 1):
+            data = planilha.range(f'A{i}').value
+            data1 = planilha.range(f'A{i + 1}').value
+            valor = planilha.range(f'I{i}').value
+            convertido = valor.replace('.', '')
+            convertido2 = convertido.replace(',', '.')
+            soma += float(convertido2)
+            if data != data1 or data1 == None:
+                date = datetime.strptime(data, '%d/%m/%Y').date()
+                data_cobranca_safra.append(date)
+                valor_cobranca_safra.append(soma)
+                soma = 0
 
-    for i in range(0, len(data_cobranca_safra)):
-        execute_query(connection, "INSERT INTO cobsafra (data, valor) VALUES ('{}', '{}');".format(data_cobranca_safra[i], valor_cobranca_safra[i]))
+        for i in range(0, len(data_cobranca_safra)):
+            execute_query(connection, "INSERT INTO cobsafra (data, valor) VALUES ('{}', '{}');".format(data_cobranca_safra[i], valor_cobranca_safra[i]))
 
-    pasta.close()
-    os.system('taskkill /im Excel.exe')
-    await asyncio.sleep(0)
+        pasta.close()
+        os.system('taskkill /im Excel.exe')
+        await asyncio.sleep(0)
