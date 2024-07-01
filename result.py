@@ -170,17 +170,20 @@ async def insertdepositos(planilha):
         await asyncio.sleep(0)
 
 async def insertdespesas(planilha):
-    local = []
-    lr = planilha.range('A2').end('down').row
-    for i in range(0, len(despesas_tot)):
-        data = despesas_tot[i][0]
-        local.append(data)
-    for i in range(2, lr + 1):
-        data2 = planilha.range(f'A{i}').value
-        date = data2.date()
-        if date in local:
-            indice = local.index(date)
-            planilha.range(f'H{i}').value = despesas_tot[indice][1]
-    await asyncio.sleep(0)
+    if despesas_tot == []:
+        print('vazio')
+    else:
+        local = []
+        lr = planilha.range('A2').end('down').row
+        for i in range(0, len(despesas_tot)):
+            data = despesas_tot[i][0]
+            local.append(data)
+        for i in range(2, lr + 1):
+            data2 = planilha.range(f'A{i}').value
+            date = data2.date()
+            if date in local:
+                indice = local.index(date)
+                planilha.range(f'H{i}').value = despesas_tot[indice][1]
+        await asyncio.sleep(0)
 
 
