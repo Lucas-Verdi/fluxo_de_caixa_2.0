@@ -3,9 +3,10 @@ from mysql.connector import Error
 
 
 connection = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    passwd='root',
+    host='solident.ddns.net',
+    port='3408',
+    user='wolf',
+    passwd='wolf',
 )
 
 cursor = connection.cursor()

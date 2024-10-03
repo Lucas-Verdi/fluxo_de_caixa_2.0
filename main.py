@@ -1,5 +1,5 @@
 from tkinter import messagebox
-from truncate import *
+from truncate_manual import *
 from threading import Thread
 
 pb = ttk.Progressbar(
@@ -87,6 +87,10 @@ controle = ttk.Button(janela, text='GERAR CONTROLE')
 controle.grid(column=0, row=15, padx=10, pady=10)
 controle.bind("<Button>", lambda e: start())
 
-pb.grid(column=0, row=16, padx=10, pady=10)
+truncateButton = ttk.Button(janela, text='LIMPAR BASE DE DADOS')
+truncateButton.grid(column=0, row=17, padx=10, pady=10)
+truncateButton.bind("<Button>", lambda e: truncate_manual())
+
+pb.grid(column=0, row=19, padx=10, pady=10)
 
 janela.mainloop()
