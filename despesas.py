@@ -26,7 +26,7 @@ async def arquivo1():
     for i in range(2, lr + 1):
         data = planilha.range(f'A{i}').value
         data1 = planilha.range(f'A{i + 1}').value
-        valor = planilha.range(f'F{i}').value
+        valor = planilha.range(f'G{i}').value
         if isinstance(data, datetime):
             soma += valor
             if data != data1 or data1 == None:
@@ -55,7 +55,7 @@ async def arquivo2():
     for i in range(2, lr + 1):
         data = planilha.range(f'A{i}').value
         data1 = planilha.range(f'A{i + 1}').value
-        valor = planilha.range(f'F{i}').value
+        valor = planilha.range(f'G{i}').value
         if isinstance(data, datetime):
             soma += valor
             if data != data1 or data1 == None:
@@ -84,7 +84,7 @@ async def arquivo3():
     for i in range(2, lr + 1):
         data = planilha.range(f'A{i}').value
         data1 = planilha.range(f'A{i + 1}').value
-        valor = planilha.range(f'F{i}').value
+        valor = planilha.range(f'G{i}').value
         if isinstance(data, datetime):
             soma += valor
             if data != data1 or data1 == None:
@@ -113,7 +113,7 @@ async def arquivo4():
     for i in range(2, lr + 1):
         data = planilha.range(f'A{i}').value
         data1 = planilha.range(f'A{i + 1}').value
-        valor = planilha.range(f'F{i}').value
+        valor = planilha.range(f'G{i}').value
         if isinstance(data, datetime):
             soma += valor
             if data != data1 or data1 == None:
