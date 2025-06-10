@@ -10,6 +10,7 @@ async def result():
     global cobranca_santander_tot
     global depositos_tot
     global despesas_tot
+    global c6_tot
 
     cursor.execute("SELECT * FROM getnet ORDER BY data")
     getnet_tot = cursor.fetchall()
@@ -29,6 +30,9 @@ async def result():
     cursor.execute("SELECT * FROM depositos ORDER BY data")
     depositos_tot = cursor.fetchall()
 
+    cursor.execute("SELECT * FROM c6 ORDER BY data")
+    c6_tot = cursor.fetchall()
+
     cursor.execute("SELECT data, SUM(valor) FROM despesas GROUP BY data")
     despesas_tot = cursor.fetchall()
 
@@ -47,7 +51,8 @@ async def result():
     planilha.range('E1').value = "COBRANÇA SAFRA"
     planilha.range('F1').value = "COBRANÇA SANTANDER"
     planilha.range('G1').value = "DEPOSITOS"
-    planilha.range('H1').value = "DESPESAS"
+    planilha.range('H1').value = "PLANILHA C6"
+    planilha.range('I1').value = "DESPESAS"
 
     planilha.range('A2').value = data_atual.strftime("%x")
 
@@ -64,6 +69,7 @@ async def result():
     await insertcobrancasafra(planilha=planilha)
     await insertcobrancasantander(planilha=planilha)
     await insertdepositos(planilha=planilha)
+    await insertc6(planilha=planilha)
     await insertdespesas(planilha=planilha)
     await asyncio.sleep(0)
 
@@ -169,6 +175,23 @@ async def insertdepositos(planilha):
                 planilha.range(f'G{i}').value = depositos_tot[indice][2]
         await asyncio.sleep(0)
 
+async def insertc6(planilha):
+    if c6_tot == []:
+        print('vazio')
+    else:
+        local = []
+        lr = planilha.range('A2').end('down').row
+        for i in range(0, len(c6_tot)):
+            data = c6_tot[i][1]
+            local.append(data)
+        for i in range(2, lr + 1):
+            data2 = planilha.range(f'A{i}').value
+            date = data2.date()
+            if date in local:
+                indice = local.index(date)
+                planilha.range(f'H{i}').value = c6_tot[indice][2]
+        await asyncio.sleep(0)
+
 async def insertdespesas(planilha):
     if despesas_tot == []:
         print('vazio')
@@ -183,7 +206,7 @@ async def insertdespesas(planilha):
             date = data2.date()
             if date in local:
                 indice = local.index(date)
-                planilha.range(f'H{i}').value = despesas_tot[indice][1]
+                planilha.range(f'I{i}').value = despesas_tot[indice][1]
         await asyncio.sleep(0)
 
 

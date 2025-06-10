@@ -1,10 +1,10 @@
-from depositos import *
+from c6 import *
 
 def ler_despesas():
     global arquivo_despesas
     arquivo_despesas = filedialog.askopenfilename(multiple=True)
     label = Label(janela, text="{} CARREGADO".format(arquivo_despesas[0]), font="Arial 7")
-    label.grid(column=0, row=14)
+    label.grid(column=0, row=16)
     
 async def despesas():
     await arquivo1()

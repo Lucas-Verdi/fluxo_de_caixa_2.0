@@ -11,4 +11,5 @@ def truncate_manual():
     cursor.execute("TRUNCATE santander;")
     cursor.execute("TRUNCATE depositos;")
     cursor.execute("TRUNCATE despesas;")
+    cursor.execute("TRUNCATE c6;")
     messagebox.showinfo("Alerta", "Sucesso!")

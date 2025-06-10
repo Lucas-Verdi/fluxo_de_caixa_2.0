@@ -33,6 +33,11 @@ arquivo_depositos = None
 data_depositos = []
 valor_depositos = []
 
+#PLANILHA C6
+arquivo_c6 = None
+data_c6 = []
+valor_c6 = []
+
 #DESPESAS
 arquivo_despesas = []
 data_despesas = []

@@ -29,6 +29,8 @@ class Th(Thread):
         pb['value'] = 60
         await depositos()
         pb['value'] = 72
+        await c6()
+        pb['value'] = 78
         await despesas()
         pb['value'] = 84
         await result()
@@ -50,7 +52,7 @@ def start():
     a.start()
 
 janela.title('FLUXO DE CAIXA')
-janela.geometry("500x600")
+janela.geometry("500x800")
 
 Label1 = Label(janela, text='Insira as pastas de trabalho:', font="Arial 10 bold", justify=CENTER)
 Label1.grid(column=0, row=0, padx=150, pady=10)
@@ -79,18 +81,22 @@ Botao6 = ttk.Button(janela, text='DEPOSITOS')
 Botao6.grid(column=0, row=11, padx=10, pady=10)
 Botao6.bind("<Button>", lambda e: ler_depositos())
 
-Botao7 = ttk.Button(janela, text='DESPESAS')
+Botao7 = ttk.Button(janela, text='PLANILHA C6')
 Botao7.grid(column=0, row=13, padx=10, pady=10)
-Botao7.bind("<Button>", lambda e: ler_despesas())
+Botao7.bind("<Button>", lambda e: ler_c6())
+
+Botao8 = ttk.Button(janela, text='DESPESAS')
+Botao8.grid(column=0, row=15, padx=10, pady=10)
+Botao8.bind("<Button>", lambda e: ler_despesas())
 
 controle = ttk.Button(janela, text='GERAR CONTROLE')
-controle.grid(column=0, row=15, padx=10, pady=10)
+controle.grid(column=0, row=17, padx=10, pady=10)
 controle.bind("<Button>", lambda e: start())
 
 truncateButton = ttk.Button(janela, text='LIMPAR BASE DE DADOS')
-truncateButton.grid(column=0, row=17, padx=10, pady=10)
+truncateButton.grid(column=0, row=19, padx=10, pady=10)
 truncateButton.bind("<Button>", lambda e: truncate_manual())
 
-pb.grid(column=0, row=19, padx=10, pady=10)
+pb.grid(column=0, row=21, padx=10, pady=10)
 
 janela.mainloop()
