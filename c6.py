@@ -16,7 +16,16 @@ async def c6():
 
         execute_query(connection, 'USE fluxodecaixa;')
 
-        lr = planilha.range('A2').end('down').row
+        lr = planilha.range('A' + str(planilha.cells.last_cell.row)).end('up').row
+
+        dados = planilha.range(f'A2:AD{lr}').value
+
+        dados_ordenados = sorted(
+            [row for row in dados if any(cell is not None for cell in row)],
+            key=lambda row: row[9] if row[9] is not None else ""
+        )
+
+        planilha.range(f'A2:AD{lr}').value = dados_ordenados + [[None]*30]*(lr-1-len(dados_ordenados))
 
         soma = 0
         celula = planilha.range('A2').value
@@ -32,7 +41,6 @@ async def c6():
                     if data != data1 or data1 == None:
                         data_c6.append(data)
                         valor_c6.append(soma)
-                        print(soma)
                         soma = 0
 
         for i in range(0, len(data_c6)):
